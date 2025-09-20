@@ -1,40 +1,36 @@
 <?php
-    /* echo "<pre>"; */
-    //sirve para ver los datos que se envian por el metodo post
-    /* var_dump($_POST);
-    echo "</pre>"; */
-    //sirve para ver los datos que se envian por el metodo file
+include "../clases/Crud.php";
+$crud = new Crud();
+//sirve para ver que contiene un objeto
+$datos = [
+    "paterno" => $_POST["paterno"],
+    "materno" => $_POST["materno"],
+    "nombre" => $_POST["nombre"],
+    "telefono" => $_POST["telefono"],
+    "correo" => $_POST["correo"],
+    "descripcion" => $_POST["descripcion"]
+];
 
-    //sirve para ver que contiene un objeto
+$nombre_foto = $crud->generar_nombre_foto($_FILES["foto"]["name"]);
+$datos_file = [
+    "nombre" => $nombre_foto,
+    "origen" => $_FILES["foto"]["tmp_name"],
+    "destino" => "../public/upload/" . $nombre_foto,
+];
+$id_contacto = $crud->store($datos);
 
-    include "../clases/Crud.php";
-    $crud = new Crud(); //instancia de la clase crud
+if ($id_contacto > 0) {
 
-    $datos = [
-        "paterno" => $_POST['paterno'],
-        "materno" => $_POST['materno'],
-        "nombre" => $_POST['nombre'],
-        "telefono" => $_POST['telefono'],
-        "correo" => $_POST['correo'],
-        "descripcion" => $_POST['descripcion']
-    ];
-
-    $datos_file =[
-        "nombre" => $_FILES ["foto"]["name"],
-        "origen" => $_FILES ["foto"]["tmp_name"],
-        "destino" => "../public/upload/".$_FILES ["foto"]["name"],
-    ];
-    
-    if($id_contacto = $crud -> store($datos)>0){ //inserta el contacto y regresa el id
-        if($crud -> store_path($id_contacto, $datos_file['nombre'],$datos_file['destino'])){ // inserta la ruta en la base de datos
-            if(move_uploaded_file($datos_file['origen'], $datos_file['destino'])){ //mueve el archivo a la carpeta destino
-                header("Location: ../index.php");
-            }else{
-                echo "Fallo al mover el archivo";
-            }
+    if ($crud->store_path($id_contacto, $datos_file["nombre"], $datos_file["destino"])) {
+        if (!move_uploaded_file($datos_file["origen"], $datos_file["destino"])) {
+            echo "Fallo al mover";
+        } else {
+            header("location:../index.php");
         }
-    }else{
-        echo "fallo al insertar";
+    } else {
+        echo "Fallo al agregar la ruta";
     }
-
+} else {
+    echo "Fallo al agregar";
+}
 ?>

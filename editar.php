@@ -38,7 +38,7 @@ $descripcion = $contacto['descripcion'];
                 <label for="descripcion" class="form-label">Descripción</label>
                 <textarea class="form-control" name="descripcion" id="descripcion" rows="3"><?php echo $descripcion?></textarea>
 
-                <label for="foto" class="form-label">Agrega una foto</label>
+                <label for="agregar_foto" class="form-label">Agrega una foto</label>
                 <input type="file" class="form-control" name="foto" id="foto">
 
                 <div class="col justify-content-center text-center">
@@ -48,7 +48,6 @@ $descripcion = $contacto['descripcion'];
         </div>
     </div>
 </div>
-
-</body>
-
-</html>
+<?php 
+    include "footer.php";
+?>
