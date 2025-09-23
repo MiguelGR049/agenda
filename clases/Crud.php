@@ -1,3 +1,4 @@
+  
 <?php 
     include "Conexion.php";
 
@@ -35,7 +36,7 @@
                                             materno, 
                                             nombre,
                                             telefono,
-                                            correo,
+                                            email,
                                             descripcion) 
                     VALUES ('". $datos["paterno"] ."' , 
                             '". $datos["materno"] . "' ,
@@ -90,7 +91,7 @@
                                             materno = '$materno', 
                                             nombre = '$nombre', 
                                             telefono = '$telefono', 
-                                            correo = '$correo', 
+                                            email = '$correo', 
                                             descripcion = '$descripcion' 
                     WHERE id = '$id'";
             $exec = mysqli_query($conn, $sql);

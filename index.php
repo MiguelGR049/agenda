@@ -51,7 +51,7 @@
                                     <td><?php echo $contacto['materno'] ?></td>
                                     <td><?php echo $contacto['nombre'] ?></td>
                                     <td><?php echo $contacto['telefono'] ?></td>
-                                    <td><?php echo $contacto['correo'] ?></td>
+                                    <td><?php echo $contacto['email'] ?></td>
                                     <td><?php echo $contacto['descripcion'] ?></td>
                                     <td><img src="public/upload/<?php echo $contacto['foto'] ?>" alt="Foto de <?php echo $contacto['nombre'] ?>" width="20%" height="20%"></td>
                                     <td>

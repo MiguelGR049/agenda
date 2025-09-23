@@ -8,13 +8,14 @@ $paterno = $contacto['paterno'];
 $materno = $contacto['materno'];
 $nombre = $contacto['nombre'];
 $telefono = $contacto['telefono'];
-$correo = $contacto['correo'];
+$correo = $contacto['email'];
 $descripcion = $contacto['descripcion'];
 ?>
 <div class="container mt-4">
     <div class="row mb-3 justify-content-center">
         <div class="card justify-content-center" style="width: 25rem; background-color: rgba(255, 255, 255, 0.5);">
-            <form action="servidor/update.php?id=<?php echo $id;?>" method="post" enctype="multipart/form-data">
+            <form action="servidor/update.php" method="post" enctype="multipart/form-data">
+                    <input type="text" name="id" value="<?php echo $contacto['id']; ?>" hidden>
             <img class="mx-auto d-block" src="./public/img/Itadori.png" height="95" width="125px">
             <div class="card-body row justify-content-center">
 
